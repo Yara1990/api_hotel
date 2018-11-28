@@ -1,0 +1,539 @@
+{
+	"info": {
+		"_postman_id": "a4384f8a-0b85-4d15-b878-991537fab5f4",
+		"name": "hotel_api_request_list",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login-user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "owner@123.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"General-manager@123.com\",\n\t\"password\":\"123\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				},
+				"description": "http://35.244.42.179:3000/user/login:\nsuccessful = status-code: 200 ok,\n\t\t\tMessage: \"Auth-succesful\",\n\t\t\ttoken: jwt-token\n\t\t\nunsuccessful: status code: 401\n\t\t\t  Message: Auth-failed"
+			},
+			"response": []
+		},
+		{
+			"name": "list-all-guest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdlbmVyYWwtbWFuYWdlckAxMjMuY29tIiwiaWF0IjoxNTQzMzQyMjE4LCJleHAiOjE1NDMzNDU4MTh9._GuExhdvkXzCZgsSvC7u7n3KhUisFaIwAfT8iIRtepg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"check-in4@123.com\",\n\t\"password\":\"123\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest"
+					]
+				},
+				"description": "returns list all guest.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "update request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdlbmVyYWwtbWFuYWdlckAxMjMuY29tIiwiaWF0IjoxNTQzMzcxNTM3LCJleHAiOjE1NDMzNzUxMzd9.CEMjkIY_fl9PwuWGLTNfre4rnkzMZqUdImq1hT1EaRs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Zone\": \"gachibowli\",\n\t\"City\": \"hyderabad\",\n\t\"State\": \"telangana\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest/5bf5dfb3d9124c3cf6d88257",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest",
+						"5bf5dfb3d9124c3cf6d88257"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter with 1 parameter(zone area)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdlbmVyYWwtbWFuYWdlckAxMjMuY29tIiwiaWF0IjoxNTQzMzcxNTM3LCJleHAiOjE1NDMzNzUxMzd9.CEMjkIY_fl9PwuWGLTNfre4rnkzMZqUdImq1hT1EaRs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Zone\": \"gachibowli\",\n\t\"City\": \"hyderabad\",\n\t\"State\": \"telangana\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest/filters/gachibowli",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest",
+						"filters",
+						"gachibowli"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-creation",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "owner@123.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"owner@123.com\",\n\t\"password\":\"123\",\n\t\"role\": \"Hotel owner\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/signup",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filters in use: 2 filter city and zone",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlpvbmFscG9saWNlMkAxMjMuY29tIiwiaWF0IjoxNTQzMzc0MDE4LCJleHAiOjE1NDMzNzc2MTh9.1Vt8sQ675nwrK64fxUuevUlX8FqfV5JubseJjp04eDY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Zone\": \"gachibowli\",\n\t\"City\": \"hyderabad\",\n\t\"State\": \"telangana\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest/filters/hyderabad/gachibowli",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest",
+						"filters",
+						"hyderabad",
+						"gachibowli"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get guest by _id(provided by mongo).",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlpvbmFscG9saWNlMkAxMjMuY29tIiwiaWF0IjoxNTQzMzc0MDE4LCJleHAiOjE1NDMzNzc2MTh9.1Vt8sQ675nwrK64fxUuevUlX8FqfV5JubseJjp04eDY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Zone\": \"gachibowli\",\n\t\"City\": \"hyderabad\",\n\t\"State\": \"telangana\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest/5bf5dfb3d9124c3cf6d88257",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest",
+						"5bf5dfb3d9124c3cf6d88257"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-guest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "GuestId",
+							"value": "id-001",
+							"type": "text"
+						},
+						{
+							"key": "Surname",
+							"value": "surname",
+							"type": "text"
+						},
+						{
+							"key": "GivenName",
+							"value": "givenname",
+							"type": "text"
+						},
+						{
+							"key": "Nationality",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "ArrivedFrom",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "BlackListStatus",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "dentificationType",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "DateOfArrivalInHotel",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "VerificationStatus",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "Remarks",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "HotelName",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "HotelAddress",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "City",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "State",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "HotelPhoneNo",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "FormCAppNo",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "VisaNumber",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "ValidTill",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "VisaPlaceOfIssue",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "VisaDateOfIssue",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "VisaType",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PassportNumber",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PassportPlaceOfIssue",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PassportDateOfIssue",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PassportExpiryDate",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "AddressCountryOfResidence",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "AddressCurrent",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "DateOfArrivalInIndia",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "EmployedInIndia",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PurposeOfVisit",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "NextDestination",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "IndianContactNumber",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "IndianMobileNumber",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "PermanentMobileNumber",
+							"value": "21-11-2018",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": ""
+						}
+					]
+				},
+				"url": {
+					"raw": "http://35.244.42.179:3000/user/guest",
+					"protocol": "http",
+					"host": [
+						"35",
+						"244",
+						"42",
+						"179"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"guest"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
