@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const path = require('path');
 var underscore = require("underscore");
 var mongoose = require('mongoose');
   Guest = mongoose.model('Guest');

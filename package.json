@@ -1,10 +1,11 @@
 {
   "name": "hotel",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Instructions to run the project 1. npm install from root directory. 2. npm run",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +20,14 @@
     "mongoose": "^5.3.12",
     "multer": "^1.4.1",
     "underscore": "^1.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yara1990/api_hotel.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Yara1990/api_hotel/issues"
+  },
+  "homepage": "https://github.com/Yara1990/api_hotel#readme"
 }

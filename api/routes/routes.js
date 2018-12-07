@@ -2,15 +2,17 @@
 const express = require("express")
 const router = express.Router();
 const multer = require('multer');
+const path = require('path');
 
 const checkAuth = require('../middleware/check-auth');//for importing check-auth middleware
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './uploads/');
+ // cb(null, path.join(__dirname, '/uploads/'));
   },
   filename: function(req,file,cb){
-    cb(null,new Date().toISOString() + file.originalname)
+    cb(null,file.originalname)
   }
 });
 const upload = multer({storage: storage});

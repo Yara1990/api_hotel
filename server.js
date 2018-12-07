@@ -6,7 +6,7 @@ var express = require('express'),
   bodyParser = require('body-parser');
   
 const userRoutes = require('./api/routes/routes'); 
-
+const path = require('path');
 
   
 // mongoose instance connection url connection
@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 // Routes which should handle requests
 app.use("/user", userRoutes);
 app.use('/uploads',express.static('uploads'));
+//app.use(express.static(__dirname));
 
 var routes = require('./api/routes/routes'); //importing route
 //routes(app); //register the route
