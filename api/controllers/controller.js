@@ -4,6 +4,8 @@ const User = require("../models/user");
 const path = require('path');
 var underscore = require("underscore");
 var mongoose = require('mongoose');
+var request = require("request");
+
   Guest = mongoose.model('Guest');
 
 var token_Key="token-key";  
@@ -89,8 +91,8 @@ exports.user_login = (req, res, next) => {
               console.log("State police is logged in....");
             } else if(user[0].role == "Zonal police"){
               console.log("Zonal police is logged in....");
-            } else if(user[0].role == "Natinal police"){
-              console.log("Natinal police is logged in....");
+            } else if(user[0].role == "National police"){
+              console.log("National police is logged in....");
             } else{
               console.log("City police is logged in....");
             };
@@ -173,24 +175,35 @@ exports.list_all_guest = function(req, res) {
 exports.create_a_guest = function(req, res) {
   var xy = req.body;
   xy['file']=req.file.path;
-  console.log(xy);
+  //console.log(xy);
   var new_guest = new Guest(xy);
   new_guest.save(function(err, guest) {
-    //console.log(guest);
     if (err)
       res.send(err);
     res.json(guest);
-    // guest.file = req.file.path;
-    //console.log(req.body);
+    //console.log(xy);
 
-  }
-
-  );
-  //console.log(new_guest);
+  });
+  var myJSON = JSON.stringify(xy);
+  create_guest_composer (myJSON);
 };
-/*console.log(req.body);
-console.log(req.file);
-}*/
+
+
+function create_guest_composer(xy){
+
+var obj = JSON.parse(xy);
+var options = { method: 'POST',
+  url: 'http://35.247.129.253:3000/api/hotel.cto.Guest',
+  body: obj,
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+}
 
 
 exports.read_a_guest = function(req, res) {
@@ -206,12 +219,128 @@ exports.read_a_guest = function(req, res) {
 exports.update_a_guest = function(req, res) {
   console.log("in update");
   Guest.findOneAndUpdate({_id: req.params.guestId}, req.body, {new: true}, function(err, guest) {
-    console.log(guest);
+    
     if (err)
       res.send(err);
     res.json(guest);
   });
+  var obj = req.body.VerificationStatus;
+  var bar = req.body.BlackListStatus;
+  var GuestId = req.body.GuestId;
+
+  var body = req.body;
+
+if (req.body.VerificationStatus == "Suspect") {
+  suspect_tx(req.body.GuestId);
+}
+
+else if (req.body.VerificationStatus == "Verified"){
+  Verified_tx(req.body.GuestId);
+}
+
+else if (req.body.BlackListStatus == "Requested"){
+  Requested_tx(req.body.GuestId);
+}
+
+else if (req.body.BlackListStatus == "Approved"){
+  Approved_tx(req.body.GuestId);
+
+}
+
 };
+
+
+function suspect_tx(GuestId){
+
+request.post({
+   "headers": { "content-type": "application/json" },
+   "url": "http://35.247.129.253:3000/api/hotel.cto.GuestSuspect",
+   "body": JSON.stringify({
+       "Guest" : 'hotel.cto.Guest#' + GuestId
+   })
+}, (error, response, body) => {
+   if(error) {
+       return console.dir(error);
+   }
+   console.dir(JSON.parse(body));
+});
+
+}
+
+function Verified_tx(GuestId){
+  
+request.post({
+   "headers": { "content-type": "application/json" },
+   "url": "http://35.247.129.253:3000/api/hotel.cto.GuestVerified",
+   "body": JSON.stringify({
+       "Guest" : 'hotel.cto.Guest#' + GuestId
+   })
+}, (error, response, body) => {
+   if(error) {
+       return console.dir(error);
+   }
+   console.dir(JSON.parse(body));
+});
+
+}
+
+function Requested_tx(GuestId){
+  
+  request.post({
+   "headers": { "content-type": "application/json" },
+   "url": "http://35.247.129.253:3000/api/hotel.cto.RequestBlacklist",
+   "body": JSON.stringify({
+       "Guest" : 'hotel.cto.Guest#' + GuestId
+   })
+}, (error, response, body) => {
+   if(error) {
+       return console.dir(error);
+   }
+   console.dir(JSON.parse(body));
+});
+
+}
+
+function Approved_tx(GuestId){
+  
+request.post({
+   "headers": { "content-type": "application/json" },
+   "url": "http://35.247.129.253:3000/api/hotel.cto.ApproveBlacklist",
+   "body": JSON.stringify({
+       "Guest" : 'hotel.cto.Guest#' + GuestId
+   })
+}, (error, response, body) => {
+   if(error) {
+       return console.dir(error);
+   }
+   console.dir(JSON.parse(body));
+});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 exports.delete_a_guest = function(req, res) {

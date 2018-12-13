@@ -16,6 +16,10 @@ var GuestSchema = new Schema({
     type: String,
     default:''
   },
+   Sex: {
+    type: String,
+    default:''
+  },
   DateOfBirth: {
     type: String,
     default:''
@@ -32,23 +36,11 @@ var GuestSchema = new Schema({
     type: String,
     default:''
   },
-  IdentificationType: {
+   HotelName: {
     type: String,
     default:''
   },
-  DateOfArrivalInHotel: {
-    type: String,
-    default:''
-  },
-  VerificationStatus: {
-    type: String,
-    default:''
-  },
-  Remarks: {
-    type: String,
-    default:''
-  },
-  HotelName: {
+  HotelChainName: {
     type: String,
     default:''
   },
@@ -145,6 +137,22 @@ var GuestSchema = new Schema({
     default:''
   },
   PermanentMobileNumber: {
+    type: String,
+    default:''
+  },
+  IdentificationType: {
+    type: String,
+    default:''
+  },
+  DateOfArrivalInHotel: {
+    type: String,
+    default:''
+  },
+  VerificationStatus: {
+    type: String,
+    default:''
+  },
+  Remarks: {
     type: String,
     default:''
   },
