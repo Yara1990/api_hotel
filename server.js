@@ -13,7 +13,9 @@ const path = require('path');
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 // mongoose.connect('mongodb://localhost/Tododb',{ useNewUrlParser: true }); 
-mongoose.connect('mongodb://localhost/guestdb',{ useNewUrlParser: true }).then(() => {
+
+mongoose.connect('mongodb://heroku_fxr81hx4:m59tv9809udret1rb2s3ua7tev@ds155774.mlab.com:55774/heroku_fxr81hx4',{ useNewUrlParser: true }).then(() => {
+// mongoose.connect('mongodb://localhost/guestdb',{ useNewUrlParser: true }).then(() => {
 console.log("Connected to Database");
 }).catch((err) => {
     console.log("Not Connected to Database ERROR! ", err);
