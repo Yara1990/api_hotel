@@ -4,6 +4,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   Guest = require('./api/models/model'), //created model loading here
   bodyParser = require('body-parser');
+  var fileUpload = require('express-fileupload');
   
 const userRoutes = require('./api/routes/routes'); 
 const path = require('path');

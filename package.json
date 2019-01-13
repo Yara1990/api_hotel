@@ -16,6 +16,7 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-fileupload": "^1.1.1-alpha.1",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.12",
     "multer": "^1.4.1",
@@ -25,6 +26,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Yara1990/api_hotel.git"
+  },
+  "engines": {
+    "node": "8.10.0"
   },
   "keywords": [],
   "bugs": {
