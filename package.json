@@ -28,7 +28,9 @@
     "url": "git+https://github.com/Yara1990/api_hotel.git"
   },
   "engines": {
-    "node": "8.10.0"
+    "node": "8.10.0",
+    "npm": "6.5.0"
+
   },
   "keywords": [],
   "bugs": {
